@@ -7,9 +7,8 @@ export USERNAME=${USERNAME:="$(whoami)"}
 export PASSWORD=${PASSWORD:=password}
 export VERSION=${VERSION:="v3.7.1"}
 
-export SCRIPT_REPO=${SCRIPT_REPO:="https://raw.githubusercontent.com/gshipley/installcentos/master"}
+export SCRIPT_REPO=${SCRIPT_REPO:="https://raw.githubusercontent.com/gabrielstein/installcentos/master"}
 
-export IP="$(ip route get 8.8.8.8 | awk '{print $NF; exit}')"
 
 echo "******"
 echo "* Your domain is $DOMAIN "
@@ -40,7 +39,8 @@ cd openshift-ansible && git fetch && git checkout release-3.7 && cd ..
 cat <<EOD > /etc/hosts
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
-${IP}		$(hostname) console console.${DOMAIN} 
+${IP1}		$(hostname) console console.${DOMAIN} 
+
 EOD
 
 if [ -z $DISK ]; then 
